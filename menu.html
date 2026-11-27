@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crumb &amp; Co. — Menu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <svg class="brand-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <path d="M9 21h22l-3 13H12L9 21z" fill="#e9c89b" stroke="#3b2416" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M7 20c0-4 3-7 6-7 1-4 4-7 7-7s6 3 7 7c3 0 6 3 6 7 0 2-2 3-4 3H11c-2 0-4-1-4-3z" fill="#f7d6d9" stroke="#3b2416" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="20" cy="6" r="2.5" fill="#d87b86" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="15" y1="21" x2="16" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="20" y1="21" x2="20" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="25" y1="21" x2="24" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+        </svg>
+        <span>Crumb &amp; Co.</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html" class="active">Menu</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="menu.html#menu-search" id="header-search-btn" class="icon-btn header-search-btn" aria-label="Search Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/>
+            <line x1="16.5" y1="16.5" x2="21" y2="21"/>
+          </svg>
+        </a>
+
+        <button type="button" id="menu-toggle" class="icon-btn menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-nav">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <line x1="4" y1="7" x2="20" y2="7"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <line x1="4" y1="17" x2="20" y2="17"/>
+          </svg>
+        </button>
+
+        <a href="cart.html" class="icon-btn" aria-label="Shopping Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="20" r="1.5"/>
+            <circle cx="18" cy="20" r="1.5"/>
+            <path d="M2 3h3l2.6 12.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6"/>
+          </svg>
+          <span id="cart-badge" class="cart-badge is-empty">0</span>
+        </a>
+      </div>
+    </div>
+
+    <div id="mobile-nav" class="mobile-nav">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html" class="active">Menu</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="page-intro">
+        <h1 class="page-title">Menu</h1>
+        <p class="page-subtitle">Handcrafted cakes, flaky pastries, and artisan loaves baked fresh every morning.</p>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="menu-search-wrap">
+        <svg class="menu-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/>
+          <line x1="16.5" y1="16.5" x2="21" y2="21"/>
+        </svg>
+        <label for="menu-search" class="sr-only">Search Menu</label>
+        <input id="menu-search" class="menu-search-input" type="search" placeholder="Search Menu...">
+      </div>
+
+      <!-- Category Filters -->
+      <div class="filter-tabs" role="tablist" aria-label="Menu categories">
+        <button type="button" class="filter-tab is-active" data-filter="all">All</button>
+        <button type="button" class="filter-tab" data-filter="cakes">Cakes</button>
+        <button type="button" class="filter-tab" data-filter="pastries">Pastries</button>
+        <button type="button" class="filter-tab" data-filter="breads">Breads</button>
+      </div>
+
+      <!-- Menu Item Rows -->
+      <div class="menu-list" id="menu-list">
+        <article class="menu-row" data-category="pastries" data-search="croissants buttery croissant pastry">
+          <div class="menu-row-left">
+            <div class="menu-thumb">
+              <img src="images/croissants.jpg" alt="Croissants">
+            </div>
+            <div class="menu-info">
+              <h2 class="menu-item-name">Croissants</h2>
+              <p class="menu-item-desc"><span class="menu-item-price">Rs. 350</span> &mdash; Buttery Croissant</p>
+            </div>
+          </div>
+          <button type="button" class="menu-add-btn" data-add-to-cart data-id="croissants" data-name="Croissants" data-price="350" aria-label="Add Croissants to cart">+</button>
+        </article>
+
+        <article class="menu-row" data-category="cakes" data-search="chocolate cake chocolate mousse cake">
+          <div class="menu-row-left">
+            <div class="menu-thumb">
+              <img src="images/mousse-cake.jpg" alt="Chocolate Cake">
+            </div>
+            <div class="menu-info">
+              <h2 class="menu-item-name">Chocolate Cake</h2>
+              <p class="menu-item-desc"><span class="menu-item-price">Rs. 4,500</span> &mdash; Chocolate Mousse Cake</p>
+            </div>
+          </div>
+          <button type="button" class="menu-add-btn" data-add-to-cart data-id="chocolate-cake" data-name="Chocolate Cake" data-price="4500" aria-label="Add Chocolate Cake to cart">+</button>
+        </article>
+
+        <article class="menu-row" data-category="cakes" data-search="strawberry cake fresh strawberry cake">
+          <div class="menu-row-left">
+            <div class="menu-thumb">
+              <img src="images/berry-cake.jpg" alt="Strawberry Cake">
+            </div>
+            <div class="menu-info">
+              <h2 class="menu-item-name">Strawberry Cake</h2>
+              <p class="menu-item-desc"><span class="menu-item-price">Rs. 2,800</span> &mdash; Fresh Strawberry Cake</p>
+            </div>
+          </div>
+          <button type="button" class="menu-add-btn" data-add-to-cart data-id="strawberry-cake" data-name="Strawberry Cake" data-price="2800" aria-label="Add Strawberry Cake to cart">+</button>
+        </article>
+
+        <article class="menu-row" data-category="cakes" data-search="red velvet cake cream cheese frosting">
+          <div class="menu-row-left">
+            <div class="menu-thumb">
+              <img src="images/red-velvet-cake.jpg" alt="Red Velvet Cake">
+            </div>
+            <div class="menu-info">
+              <h2 class="menu-item-name">Red Velvet Cake</h2>
+              <p class="menu-item-desc"><span class="menu-item-price">Rs. 3,800</span> &mdash; Classic Cream Cheese Frosting</p>
+            </div>
+          </div>
+          <button type="button" class="menu-add-btn" data-add-to-cart data-id="red-velvet-cake" data-name="Red Velvet Cake" data-price="3800" aria-label="Add Red Velvet Cake to cart">+</button>
+        </article>
+
+        <article class="menu-row" data-category="pastries" data-search="almond danish flaky puff pastry">
+          <div class="menu-row-left">
+            <div class="menu-thumb">
+              <img src="images/pastry-puff.jpg" alt="Almond Danish">
+            </div>
+            <div class="menu-info">
+              <h2 class="menu-item-name">Almond Danish</h2>
+              <p class="menu-item-desc"><span class="menu-item-price">Rs. 420</span> &mdash; Flaky Glazed Puff Pastry</p>
+            </div>
+          </div>
+          <button type="button" class="menu-add-btn" data-add-to-cart data-id="almond-danish" data-name="Almond Danish" data-price="420" aria-label="Add Almond Danish to cart">+</button>
+        </article>
+
+        <article class="menu-row" data-category="breads" data-search="sourdough loaf artisan bread">
+          <div class="menu-row-left">
+            <div class="menu-thumb">
+              <img src="images/artisan-bread.jpg" alt="Sourdough Loaf">
+            </div>
+            <div class="menu-info">
+              <h2 class="menu-item-name">Sourdough Loaf</h2>
+              <p class="menu-item-desc"><span class="menu-item-price">Rs. 650</span> &mdash; Crusty Artisan Country Loaf</p>
+            </div>
+          </div>
+          <button type="button" class="menu-add-btn" data-add-to-cart data-id="sourdough-loaf" data-name="Sourdough Loaf" data-price="650" aria-label="Add Sourdough Loaf to cart">+</button>
+        </article>
+
+        <article class="menu-row" data-category="breads" data-search="brioche bread soft sweet loaf">
+          <div class="menu-row-left">
+            <div class="menu-thumb">
+              <img src="images/vanilla-cake.jpg" alt="Brioche Bread">
+            </div>
+            <div class="menu-info">
+              <h2 class="menu-item-name">Brioche Bread</h2>
+              <p class="menu-item-desc"><span class="menu-item-price">Rs. 550</span> &mdash; Soft Golden Sweet Loaf</p>
+            </div>
+          </div>
+          <button type="button" class="menu-add-btn" data-add-to-cart data-id="brioche-bread" data-name="Brioche Bread" data-price="550" aria-label="Add Brioche Bread to cart">+</button>
+        </article>
+
+        <div id="menu-empty" class="menu-empty" hidden>
+          No bakery items match your search. Try another keyword or select &ldquo;All&rdquo;.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>&copy; 2026 Crumb &amp; Co. | All Rights Reserved</span>
+      <span class="footer-tagline">Small-batch patisserie &amp; artisan bakery</span>
+    </div>
+  </footer>
+
+  <!-- Pop-up Toast -->
+  <div id="cart-toast" class="toast" role="status" aria-live="polite">
+    <p class="toast-title">&#10003; Added to Cart</p>
+    <p id="toast-message" class="toast-message">Item was added to the cart.</p>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

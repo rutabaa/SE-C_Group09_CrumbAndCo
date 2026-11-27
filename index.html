@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crumb &amp; Co. — Artisan Bakery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <svg class="brand-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <path d="M9 21h22l-3 13H12L9 21z" fill="#e9c89b" stroke="#3b2416" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M7 20c0-4 3-7 6-7 1-4 4-7 7-7s6 3 7 7c3 0 6 3 6 7 0 2-2 3-4 3H11c-2 0-4-1-4-3z" fill="#f7d6d9" stroke="#3b2416" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="20" cy="6" r="2.5" fill="#d87b86" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="15" y1="21" x2="16" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="20" y1="21" x2="20" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="25" y1="21" x2="24" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+        </svg>
+        <span>Crumb &amp; Co.</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="menu.html#menu-search" id="header-search-btn" class="icon-btn header-search-btn" aria-label="Search Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/>
+            <line x1="16.5" y1="16.5" x2="21" y2="21"/>
+          </svg>
+        </a>
+
+        <button type="button" id="menu-toggle" class="icon-btn menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-nav">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <line x1="4" y1="7" x2="20" y2="7"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <line x1="4" y1="17" x2="20" y2="17"/>
+          </svg>
+        </button>
+
+        <a href="cart.html" class="icon-btn" aria-label="Shopping Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="20" r="1.5"/>
+            <circle cx="18" cy="20" r="1.5"/>
+            <path d="M2 3h3l2.6 12.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6"/>
+          </svg>
+          <span id="cart-badge" class="cart-badge is-empty">0</span>
+        </a>
+      </div>
+    </div>
+
+    <div id="mobile-nav" class="mobile-nav">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- Hero Section -->
+      <section class="hero-box" aria-labelledby="hero-heading">
+        <div class="hero-content">
+          <span class="hero-eyebrow">Artisan Bakery &middot; Morning Bake</span>
+          <h1 id="hero-heading" class="hero-title">Freshly Baked Daily</h1>
+          <p class="hero-subtitle">Artisan croissants, cakes and pastries &mdash; baked fresh every morning with real butter and seasonal ingredients.</p>
+          <div class="hero-actions">
+            <a href="cakes.html" class="btn btn-primary">Order Now</a>
+            <a href="menu.html" class="btn btn-secondary">View Menu</a>
+          </div>
+        </div>
+        <div class="hero-media">
+          <img src="images/hero-bakery.jpg" alt="Sunlit Crumb and Co. bakery counter with freshly baked croissants, layered cake, and sourdough loaves">
+        </div>
+      </section>
+
+      <!-- Shop by Category -->
+      <section class="section-block" aria-labelledby="category-heading">
+        <div class="section-header">
+          <h2 id="category-heading" class="section-heading">Shop by Category</h2>
+          <a href="menu.html" class="section-link">Explore Full Menu &rarr;</a>
+        </div>
+        <div class="arch-grid category-grid">
+          <a href="cakes.html" class="arch-card">
+            <div class="arch-card-media">
+              <img src="images/berry-cake.jpg" alt="Handcrafted birthday and layered cakes">
+            </div>
+            <div class="arch-card-text">
+              <h3 class="arch-card-title">Cakes</h3>
+              <p class="arch-card-meta">birthday &bull; layered</p>
+            </div>
+          </a>
+
+          <a href="pastries.html" class="arch-card">
+            <div class="arch-card-media">
+              <img src="images/pastry-puff.jpg" alt="Flaky buttery laminated pastries">
+            </div>
+            <div class="arch-card-text">
+              <h3 class="arch-card-title">Pastries</h3>
+              <p class="arch-card-meta">puff &bull; buttery</p>
+            </div>
+          </a>
+
+          <a href="breads.html" class="arch-card">
+            <div class="arch-card-media">
+              <img src="images/artisan-bread.jpg" alt="Freshly baked artisan sourdough and sweet breads">
+            </div>
+            <div class="arch-card-text">
+              <h3 class="arch-card-title">Breads</h3>
+              <p class="arch-card-meta">brown &bull; sweet</p>
+            </div>
+          </a>
+
+          <a href="menu.html?category=pastries" class="arch-card">
+            <div class="arch-card-media">
+              <img src="images/croissants.jpg" alt="Golden flaky French butter croissants">
+            </div>
+            <div class="arch-card-text">
+              <h3 class="arch-card-title">Croissants</h3>
+              <p class="arch-card-meta">creamy &bull; puff</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Best Sellers -->
+      <section class="section-block" aria-labelledby="bestsellers-heading">
+        <div class="section-header">
+          <h2 id="bestsellers-heading" class="section-heading">Best Sellers</h2>
+          <a href="cakes.html" class="section-link">Shop All Cakes &rarr;</a>
+        </div>
+        <div class="arch-grid">
+          <a href="cakes.html" class="arch-card">
+            <div class="arch-card-media">
+              <img src="images/berry-cake.jpg" alt="Strawberry Cake">
+            </div>
+            <div class="arch-card-text">
+              <h3 class="arch-card-title">Strawberry Cake</h3>
+              <span class="bestseller-price">Rs. 2,800</span>
+            </div>
+          </a>
+
+          <a href="cakes.html" class="arch-card">
+            <div class="arch-card-media">
+              <img src="images/chocolate-fudge-cake.jpg" alt="Fudge Cake">
+            </div>
+            <div class="arch-card-text">
+              <h3 class="arch-card-title">Fudge Cake</h3>
+              <span class="bestseller-price">Rs. 4,500</span>
+            </div>
+          </a>
+
+          <a href="cakes.html" class="arch-card">
+            <div class="arch-card-media">
+              <img src="images/vanilla-cake.jpg" alt="Vanilla Cake">
+            </div>
+            <div class="arch-card-text">
+              <h3 class="arch-card-title">Vanilla Cake</h3>
+              <span class="bestseller-price">Rs. 3,200</span>
+            </div>
+          </a>
+
+          <a href="cakes.html" class="arch-card">
+            <div class="arch-card-media">
+              <img src="images/german-fudge-cake.jpg" alt="German Fudge">
+            </div>
+            <div class="arch-card-text">
+              <h3 class="arch-card-title">German Fudge</h3>
+              <span class="bestseller-price">Rs. 4,000</span>
+            </div>
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>&copy; 2026 Crumb &amp; Co. | All Rights Reserved</span>
+      <span class="footer-tagline">Small-batch patisserie &amp; artisan bakery</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
