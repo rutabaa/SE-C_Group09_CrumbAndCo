@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crumb &amp; Co. — Shopping Cart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS (CDN) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  >
+
+  <!-- Custom Bakery Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <svg class="brand-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <path d="M9 21h22l-3 13H12L9 21z" fill="#e9c89b" stroke="#3b2416" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M7 20c0-4 3-7 6-7 1-4 4-7 7-7s6 3 7 7c3 0 6 3 6 7 0 2-2 3-4 3H11c-2 0-4-1-4-3z" fill="#f7d6d9" stroke="#3b2416" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="20" cy="6" r="2.5" fill="#d87b86" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="15" y1="21" x2="16" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="20" y1="21" x2="20" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="25" y1="21" x2="24" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+        </svg>
+        <span>Crumb &amp; Co.</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="menu.html#menu-search" id="header-search-btn" class="icon-btn header-search-btn" aria-label="Search Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/>
+            <line x1="16.5" y1="16.5" x2="21" y2="21"/>
+          </svg>
+        </a>
+
+        <button type="button" id="menu-toggle" class="icon-btn menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-nav">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <line x1="4" y1="7" x2="20" y2="7"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <line x1="4" y1="17" x2="20" y2="17"/>
+          </svg>
+        </button>
+
+        <a href="cart.html" class="icon-btn" aria-label="Shopping Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="20" r="1.5"/>
+            <circle cx="18" cy="20" r="1.5"/>
+            <path d="M2 3h3l2.6 12.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6"/>
+          </svg>
+          <span id="cart-badge" class="cart-badge is-empty">0</span>
+        </a>
+      </div>
+    </div>
+
+    <div id="mobile-nav" class="mobile-nav">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="cc-page-header py-4">
+    <div class="container">
+      <nav class="cc-breadcrumb mb-2" aria-label="Breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+        </ol>
+      </nav>
+      <div class="d-flex flex-wrap justify-content-between align-items-end gap-3">
+        <div>
+          <h1 class="h2 fw-bold mb-1">Your Bakery Basket</h1>
+          <p class="cc-subtitle mb-0">
+            Handcrafted breads, viennoiserie, and cakes baked fresh daily in small batches.
+          </p>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <span id="cartItemCountLabel" class="badge rounded-pill text-bg-light border px-3 py-2 tabular-nums">
+            0 items
+          </span>
+          <button
+            type="button"
+            id="clearCartBtn"
+            class="btn btn-sm btn-bakery-outline px-3 py-2"
+          >
+            Clear Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Cart Content -->
+  <main class="py-4 py-lg-5">
+    <div class="container">
+      <div class="row g-4 align-items-start">
+        <!-- Cart Items Table Column -->
+        <div class="col-lg-8">
+          <div class="cc-card overflow-hidden">
+            <div id="cartTableWrapper" class="table-responsive">
+              <table class="table cc-cart-table align-middle" aria-label="Shopping Cart Items">
+                <thead>
+                  <tr>
+                    <th scope="col">Bakery Item</th>
+                    <th scope="col" class="text-end">Unit Price</th>
+                    <th scope="col" class="text-center">Quantity</th>
+                    <th scope="col" class="text-end">Subtotal</th>
+                    <th scope="col" class="text-center">Remove</th>
+                  </tr>
+                </thead>
+                <tbody id="cartTableBody">
+                  <!-- Populated dynamically by js/cart.js -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Empty Cart State -->
+            <div id="emptyCartState" class="cc-empty-state d-none" aria-live="polite">
+              <div class="cc-empty-icon" aria-hidden="true">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+                  <path d="M3 6h18"/>
+                  <path d="M16 10a4 4 0 0 1-8 0"/>
+                </svg>
+              </div>
+              <h2 class="h4 fw-bold mb-2">Your bakery basket is empty</h2>
+              <p class="cc-subtitle mb-4 mx-auto" style="max-width: 420px;">
+                Looks like you haven&rsquo;t added any warm loaves or pastries yet. Explore our menu or load a sample basket to preview.
+              </p>
+              <div class="d-flex flex-wrap justify-content-center gap-2">
+                <a href="menu.html" class="btn btn-bakery">Browse Bakery Menu</a>
+                <button type="button" id="restoreSampleBtn" class="btn btn-bakery-outline">
+                  Load Sample Items
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap justify-content-between align-items-center mt-3 gap-2">
+            <a href="menu.html" class="text-decoration-none fw-semibold" style="color: var(--cc-amber-dark);">
+              &larr; Continue Shopping on Menu
+            </a>
+            <small class="text-muted">All prices inclusive of local bakery packaging.</small>
+          </div>
+        </div>
+
+        <!-- Order Summary & Promo Column -->
+        <div class="col-lg-4">
+          <aside class="cc-card cc-summary-card p-4" aria-label="Order Summary">
+            <h2 class="h4 fw-bold mb-3">Order Summary</h2>
+
+            <!-- Promo Code Form -->
+            <form id="promoForm" class="mb-3" novalidate>
+              <label for="promoInput" class="form-label fw-semibold small mb-1">
+                Promo Code
+              </label>
+              <div class="input-group">
+                <input
+                  type="text"
+                  id="promoInput"
+                  class="form-control cc-promo-input"
+                  placeholder="Enter code (e.g. CRUMB10)"
+                  autocomplete="off"
+                  aria-describedby="promoHint"
+                >
+                <button type="submit" id="applyPromoBtn" class="btn btn-bakery-outline px-3">
+                  Apply
+                </button>
+              </div>
+              <div id="promoHint" class="cc-promo-hint mt-2">
+                Try
+                <button type="button" class="cc-promo-code-chip" data-promo-fill="CRUMB10">CRUMB10</button>
+                for 10% off or
+                <button type="button" class="cc-promo-code-chip" data-promo-fill="SWEET15">SWEET15</button>
+                for 15% off.
+              </div>
+              <div
+                id="promoFeedback"
+                class="cc-promo-feedback d-none mt-2 justify-content-between align-items-center gap-2"
+                role="status"
+                aria-live="polite"
+              >
+                <span id="promoFeedbackText"></span>
+                <button
+                  type="button"
+                  id="removePromoBtn"
+                  class="btn btn-sm btn-link border-0 p-0 text-decoration-none fw-semibold d-none"
+                  style="color: inherit;"
+                >
+                  Remove
+                </button>
+              </div>
+            </form>
+
+            <hr class="my-3" style="border-color: var(--cc-border);">
+
+            <!-- Live Totals -->
+            <div aria-live="polite">
+              <div class="cc-summary-row">
+                <span>Subtotal</span>
+                <strong id="summarySubtotal" class="tabular-nums">PKR 0</strong>
+              </div>
+              <div class="cc-summary-row">
+                <span>Delivery Fee</span>
+                <strong id="summaryDelivery" class="tabular-nums">PKR 0</strong>
+              </div>
+              <div class="cc-summary-row">
+                <span>Discount <span id="discountCodeLabel" class="small"></span></span>
+                <span id="summaryDiscount" class="cc-summary-discount tabular-nums">PKR 0</span>
+              </div>
+
+              <div class="cc-summary-total">
+                <span class="cc-summary-total-label">Grand Total</span>
+                <span id="summaryTotal" class="cc-summary-total-amount tabular-nums">PKR 0</span>
+              </div>
+            </div>
+
+            <div id="deliveryNote" class="cc-delivery-note mt-3 mb-3">
+              Standard delivery is PKR 250. Enjoy free delivery on orders of PKR 4,000 or more.
+            </div>
+
+            <button
+              type="button"
+              id="checkoutBtn"
+              class="btn btn-bakery w-100 py-2 fs-6"
+            >
+              Proceed to Checkout &rarr;
+            </button>
+
+            <p class="small text-center text-muted mt-3 mb-0">
+              Freshly packed &bull; Cash on Delivery &amp; Online Payments
+            </p>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>&copy; 2026 Crumb &amp; Co. | All Rights Reserved</span>
+      <span class="footer-tagline">Small-batch patisserie &amp; artisan bakery</span>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle (CDN) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- Cart Logic -->
+  <script src="js/cart.js"></script>
+</body>
+</html>
