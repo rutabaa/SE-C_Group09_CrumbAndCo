@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crumb &amp; Co. — Track Order</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS (CDN) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  >
+
+  <!-- Custom Bakery Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <svg class="brand-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <path d="M9 21h22l-3 13H12L9 21z" fill="#e9c89b" stroke="#3b2416" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M7 20c0-4 3-7 6-7 1-4 4-7 7-7s6 3 7 7c3 0 6 3 6 7 0 2-2 3-4 3H11c-2 0-4-1-4-3z" fill="#f7d6d9" stroke="#3b2416" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="20" cy="6" r="2.5" fill="#d87b86" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="15" y1="21" x2="16" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="20" y1="21" x2="20" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="25" y1="21" x2="24" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+        </svg>
+        <span>Crumb &amp; Co.</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="menu.html#menu-search" id="header-search-btn" class="icon-btn header-search-btn" aria-label="Search Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/>
+            <line x1="16.5" y1="16.5" x2="21" y2="21"/>
+          </svg>
+        </a>
+
+        <button type="button" id="menu-toggle" class="icon-btn menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-nav">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <line x1="4" y1="7" x2="20" y2="7"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <line x1="4" y1="17" x2="20" y2="17"/>
+          </svg>
+        </button>
+
+        <a href="cart.html" class="icon-btn" aria-label="Shopping Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="20" r="1.5"/>
+            <circle cx="18" cy="20" r="1.5"/>
+            <path d="M2 3h3l2.6 12.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6"/>
+          </svg>
+          <span id="cart-badge" class="cart-badge is-empty">0</span>
+        </a>
+      </div>
+    </div>
+
+    <div id="mobile-nav" class="mobile-nav">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="cc-page-header py-4">
+    <div class="container">
+      <nav class="cc-breadcrumb mb-2" aria-label="Breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Track Order</li>
+        </ol>
+      </nav>
+      <div class="d-flex flex-wrap justify-content-between align-items-end gap-3">
+        <div>
+          <h1 class="h2 fw-bold mb-1">Track Your Bakery Order</h1>
+          <p class="cc-subtitle mb-0">
+            Follow your freshly baked treats from our ovens straight to your doorstep.
+          </p>
+        </div>
+        <a href="menu.html" class="btn btn-sm btn-bakery-outline px-3 py-2">
+          Browse Menu &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Track Order Content -->
+  <main class="py-4 py-lg-5">
+    <div class="container">
+      <!-- Order Search Card -->
+      <section class="cc-card p-4 mb-4" aria-label="Search Order by ID">
+        <form id="trackSearchForm" class="row g-3 align-items-end" novalidate>
+          <div class="col-md-8 col-lg-9">
+            <label for="orderSearchInput" class="form-label fw-semibold small">
+              Order ID
+            </label>
+            <input
+              type="text"
+              id="orderSearchInput"
+              name="orderId"
+              class="form-control cc-form-control tabular-nums"
+              placeholder="Enter Order ID (e.g. CC-2026-4821)"
+              autocomplete="off"
+            >
+          </div>
+          <div class="col-md-4 col-lg-3 d-grid">
+            <button type="submit" id="trackSearchBtn" class="btn btn-bakery">
+              Find Order
+            </button>
+          </div>
+        </form>
+
+        <div
+          id="searchFeedback"
+          class="cc-promo-feedback is-error d-none mt-3"
+          role="alert"
+          aria-live="polite"
+        ></div>
+
+        <!-- Recent Orders Quick Switcher -->
+        <div id="recentOrdersBar" class="d-none mt-3 pt-3 border-top" style="border-color: var(--cc-border) !important;">
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <span class="small fw-semibold" style="color: var(--cc-cocoa);">Recent Orders:</span>
+            <div id="recentOrdersChips" class="d-flex flex-wrap gap-2"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Empty State (no orders in localStorage yet) -->
+      <section id="emptyTrackState" class="cc-card cc-empty-state d-none" aria-live="polite">
+        <div class="cc-empty-icon" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+        <h2 class="h4 fw-bold mb-2">No orders found yet</h2>
+        <p class="cc-subtitle mb-4 mx-auto" style="max-width: 460px;">
+          Place an order from your bakery basket to receive an Order ID, or load a sample order to preview the live status tracker.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+          <a href="cart.html" class="btn btn-bakery">Go to Cart</a>
+          <button type="button" id="loadSampleOrderBtn" class="btn btn-bakery-outline">
+            Load Sample Order
+          </button>
+        </div>
+      </section>
+
+      <!-- Active Order Tracker & Details -->
+      <div id="orderDetailsContainer" class="d-none">
+        <!-- Status Overview & 4-Step Tracker Card -->
+        <section class="cc-card p-4 mb-4" aria-label="Order Status Tracker">
+          <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
+            <div>
+              <div class="small text-uppercase fw-semibold mb-1" style="letter-spacing: 0.05em; color: var(--cc-cocoa);">
+                Order Reference
+              </div>
+              <h2 id="displayOrderId" class="h3 fw-bold mb-1 tabular-nums">CC-2026-0000</h2>
+              <p id="displayPlacedAt" class="cc-subtitle small mb-0">Placed on &mdash;</p>
+            </div>
+
+            <div class="d-flex flex-column align-items-md-end gap-2">
+              <span id="displayStatusBadge" class="cc-status-badge" aria-live="polite">
+                <span class="cc-status-dot" aria-hidden="true"></span>
+                <span id="displayStatusText">Order Placed</span>
+              </span>
+              <span id="displayEtaBadge" class="small fw-semibold" style="color: var(--cc-cocoa);">
+                Estimated delivery: 35&ndash;50 mins
+              </span>
+            </div>
+          </div>
+
+          <!-- Visual 4-Step Order Status Tracker -->
+          <div id="orderStepper" class="cc-stepper mb-4" role="list" aria-label="Order Progress Steps">
+            <div class="cc-stepper-track" aria-hidden="true">
+              <div id="stepperFill" class="cc-stepper-fill"></div>
+            </div>
+
+            <div class="cc-step" data-step-index="0" role="listitem">
+              <div class="cc-step-circle" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 11l3 3L22 4"/>
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                </svg>
+              </div>
+              <div>
+                <div class="cc-step-title">Order Placed</div>
+                <div class="cc-step-desc">Confirmed &amp; sent to our kitchen</div>
+              </div>
+            </div>
+
+            <div class="cc-step" data-step-index="1" role="listitem">
+              <div class="cc-step-circle" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 15c1-5 4-8 8-8s7 3 8 8c-2 2-4 2-6 1-1-.5-3-.5-4 0-2 1-4 1-6-1Z"/>
+                  <path d="M9 8v7M12 7v8M15 8v7"/>
+                </svg>
+              </div>
+              <div>
+                <div class="cc-step-title">Baking in Oven</div>
+                <div class="cc-step-desc">Freshly baked &amp; warm packed</div>
+              </div>
+            </div>
+
+            <div class="cc-step" data-step-index="2" role="listitem">
+              <div class="cc-step-circle" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"/>
+                  <path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"/>
+                  <circle cx="7" cy="18" r="2"/>
+                  <circle cx="17" cy="18" r="2"/>
+                </svg>
+              </div>
+              <div>
+                <div class="cc-step-title">Out for Delivery</div>
+                <div class="cc-step-desc">Courier is en route to you</div>
+              </div>
+            </div>
+
+            <div class="cc-step" data-step-index="3" role="listitem">
+              <div class="cc-step-circle" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5Z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="cc-step-title">Delivered</div>
+                <div class="cc-step-desc">Enjoy your Crumb &amp; Co treats</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Demo Controls Bar -->
+          <div class="cc-delivery-note d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div>
+              <strong>Presentation Demo:</strong> Advance the live status step to preview real-time order updates.
+            </div>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+              <button type="button" id="resetStatusBtn" class="btn btn-sm btn-bakery-outline px-3 py-2">
+                Reset Status
+              </button>
+              <button type="button" id="simulateStatusBtn" class="btn btn-sm btn-bakery px-3 py-2">
+                Simulate Next Status &rarr;
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Order Breakdown & Customer Details Grid -->
+        <div class="row g-4 align-items-start">
+          <!-- Itemized Order Details -->
+          <div class="col-lg-7">
+            <section class="cc-card p-4" aria-label="Itemized Order Details">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="h4 fw-bold mb-0">Itemized Order Details</h3>
+                <span id="orderItemCountBadge" class="badge rounded-pill text-bg-light border px-3 py-2 tabular-nums">
+                  0 items
+                </span>
+              </div>
+
+              <div id="orderItemsList" class="cc-checkout-item-list mb-3">
+                <!-- Populated dynamically by js/track-order.js -->
+              </div>
+
+              <hr class="my-3" style="border-color: var(--cc-border);">
+
+              <div>
+                <div class="cc-summary-row">
+                  <span>Subtotal</span>
+                  <strong id="summarySubtotal" class="tabular-nums">PKR 0</strong>
+                </div>
+                <div class="cc-summary-row">
+                  <span>Delivery Fee</span>
+                  <strong id="summaryDelivery" class="tabular-nums">PKR 0</strong>
+                </div>
+                <div class="cc-summary-row">
+                  <span>Discount <span id="discountCodeLabel" class="small"></span></span>
+                  <span id="summaryDiscount" class="cc-summary-discount tabular-nums">PKR 0</span>
+                </div>
+
+                <div class="cc-summary-total">
+                  <span class="cc-summary-total-label">Total Paid / Due</span>
+                  <span id="summaryTotal" class="cc-summary-total-amount tabular-nums">PKR 0</span>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- Customer Delivery & Payment Info -->
+          <div class="col-lg-5">
+            <aside class="cc-card p-4" aria-label="Customer Delivery Information">
+              <h3 class="h4 fw-bold mb-3">Delivery &amp; Payment Info</h3>
+
+              <div class="cc-info-list mb-3">
+                <div class="cc-info-row">
+                  <span class="cc-info-label">Customer</span>
+                  <span id="customerName" class="cc-info-value">&mdash;</span>
+                </div>
+                <div class="cc-info-row">
+                  <span class="cc-info-label">Phone</span>
+                  <span id="customerPhone" class="cc-info-value tabular-nums">&mdash;</span>
+                </div>
+                <div class="cc-info-row">
+                  <span class="cc-info-label">Email</span>
+                  <span id="customerEmail" class="cc-info-value">&mdash;</span>
+                </div>
+                <div class="cc-info-row">
+                  <span class="cc-info-label">Address</span>
+                  <span id="customerAddress" class="cc-info-value">&mdash;</span>
+                </div>
+                <div class="cc-info-row">
+                  <span class="cc-info-label">City</span>
+                  <span id="customerCity" class="cc-info-value">&mdash;</span>
+                </div>
+                <div class="cc-info-row">
+                  <span class="cc-info-label">Delivery Notes</span>
+                  <span id="customerNotes" class="cc-info-value">&mdash;</span>
+                </div>
+                <div class="cc-info-row">
+                  <span class="cc-info-label">Payment</span>
+                  <span id="paymentMethod" class="cc-info-value">&mdash;</span>
+                </div>
+              </div>
+
+              <div class="cc-delivery-note">
+                <div class="fw-bold mb-1" style="color: var(--cc-espresso);">Estimated Delivery Window</div>
+                <div id="estimatedDeliveryDetail">35&ndash;50 mins from order placement.</div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>&copy; 2026 Crumb &amp; Co. | All Rights Reserved</span>
+      <span class="footer-tagline">Small-batch patisserie &amp; artisan bakery</span>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle (CDN) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- Track Order Logic -->
+  <script src="js/track-order.js"></script>
+</body>
+</html>
