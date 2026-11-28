@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crumb &amp; Co. — Cakes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <svg class="brand-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <path d="M9 21h22l-3 13H12L9 21z" fill="#e9c89b" stroke="#3b2416" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M7 20c0-4 3-7 6-7 1-4 4-7 7-7s6 3 7 7c3 0 6 3 6 7 0 2-2 3-4 3H11c-2 0-4-1-4-3z" fill="#f7d6d9" stroke="#3b2416" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="20" cy="6" r="2.5" fill="#d87b86" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="15" y1="21" x2="16" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="20" y1="21" x2="20" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="25" y1="21" x2="24" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+        </svg>
+        <span>Crumb &amp; Co.</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="menu.html#menu-search" id="header-search-btn" class="icon-btn header-search-btn" aria-label="Search Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/>
+            <line x1="16.5" y1="16.5" x2="21" y2="21"/>
+          </svg>
+        </a>
+
+        <button type="button" id="menu-toggle" class="icon-btn menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-nav">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <line x1="4" y1="7" x2="20" y2="7"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <line x1="4" y1="17" x2="20" y2="17"/>
+          </svg>
+        </button>
+
+        <a href="cart.html" class="icon-btn" aria-label="Shopping Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="20" r="1.5"/>
+            <circle cx="18" cy="20" r="1.5"/>
+            <path d="M2 3h3l2.6 12.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6"/>
+          </svg>
+          <span id="cart-badge" class="cart-badge is-empty">0</span>
+        </a>
+      </div>
+    </div>
+
+    <div id="mobile-nav" class="mobile-nav">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="page-header-row">
+        <a href="index.html" class="back-link" aria-label="Back to Home">&larr;</a>
+        <div>
+          <h1 class="page-title">Cakes</h1>
+          <p class="page-subtitle">Signature layered cakes crafted fresh for every celebration</p>
+        </div>
+      </div>
+
+      <section class="cakes-grid" aria-label="Cakes catalog">
+        <!-- 1. Strawberry Cake -->
+        <article class="cake-card">
+          <div class="cake-card-top">
+            <div class="cake-art">
+              <img src="images/berry-cake.jpg" alt="Strawberry Cake">
+            </div>
+            <h2 class="cake-name">Strawberry Cake</h2>
+          </div>
+          <div class="cake-card-body">
+            <p class="cake-price"><span class="cake-price-label">Price:</span>Rs. 2,800</p>
+            <button type="button" class="add-cart-btn" data-add-to-cart data-id="strawberry-cake" data-name="Strawberry Cake" data-price="2800">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="9" cy="20" r="1.5"/>
+                <circle cx="18" cy="20" r="1.5"/>
+                <path d="M2 3h3l2.6 12.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6"/>
+              </svg>
+              <span>Add to Cart</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- 2. Chocolate Fudge Cake -->
+        <article class="cake-card">
+          <div class="cake-card-top">
+            <div class="cake-art">
+              <img src="images/chocolate-fudge-cake.jpg" alt="Chocolate Fudge Cake">
+            </div>
+            <h2 class="cake-name">Chocolate Fudge Cake</h2>
+          </div>
+          <div class="cake-card-body">
+            <p class="cake-price"><span class="cake-price-label">Price:</span>Rs. 4,500</p>
+            <button type="button" class="add-cart-btn" data-add-to-cart data-id="chocolate-fudge-cake" data-name="Chocolate Fudge Cake" data-price="4500">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="9" cy="20" r="1.5"/>
+                <circle cx="18" cy="20" r="1.5"/>
+                <path d="M2 3h3l2.6 12.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6"/>
+              </svg>
+              <span>Add to Cart</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- 3. German Fudge -->
+        <article class="cake-card">
+          <div class="cake-card-top">
+            <div class="cake-art">
+              <img src="images/german-fudge-cake.jpg" alt="German Fudge Cake">
+            </div>
+            <h2 class="cake-name">German Fudge</h2>
+          </div>
+          <div class="cake-card-body">
+            <p class="cake-price"><span class="cake-price-label">Price:</span>Rs. 4,000</p>
+            <button type="button" class="add-cart-btn" data-add-to-cart data-id="german-fudge" data-name="German Fudge" data-price="4000">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="9" cy="20" r="1.5"/>
+                <circle cx="18" cy="20" r="1.5"/>
+                <path d="M2 3h3l2.6 12.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6"/>
+              </svg>
+              <span>Add to Cart</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- 4. Cheese Cake -->
+        <article class="cake-card">
+          <div class="cake-card-top">
+            <div class="cake-art">
+              <img src="images/cheese-cake.jpg" alt="Cheese Cake">
+            </div>
+            <h2 class="cake-name">Cheese Cake</h2>
+          </div>
+          <div class="cake-card-body">
+            <p class="cake-price"><span class="cake-price-label">Price:</span>Rs. 3,500</p>
+            <button type="button" class="add-cart-btn" data-add-to-cart data-id="cheese-cake" data-name="Cheese Cake" data-price="3500">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="9" cy="20" r="1.5"/>
+                <circle cx="18" cy="20" r="1.5"/>
+                <path d="M2 3h3l2.6 12.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6"/>
+              </svg>
+              <span>Add to Cart</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- 5. Red Velvet Cake -->
+        <article class="cake-card">
+          <div class="cake-card-top">
+            <div class="cake-art">
+              <img src="images/red-velvet-cake.jpg" alt="Red Velvet Cake">
+            </div>
+            <h2 class="cake-name">Red Velvet Cake</h2>
+          </div>
+          <div class="cake-card-body">
+            <p class="cake-price"><span class="cake-price-label">Price:</span>Rs. 3,800</p>
+            <button type="button" class="add-cart-btn" data-add-to-cart data-id="red-velvet-cake" data-name="Red Velvet Cake" data-price="3800">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="9" cy="20" r="1.5"/>
+                <circle cx="18" cy="20" r="1.5"/>
+                <path d="M2 3h3l2.6 12.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6"/>
+              </svg>
+              <span>Add to Cart</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- 6. Mousse Cake -->
+        <article class="cake-card">
+          <div class="cake-card-top">
+            <div class="cake-art">
+              <img src="images/mousse-cake.jpg" alt="Mousse Cake">
+            </div>
+            <h2 class="cake-name">Mousse Cake</h2>
+          </div>
+          <div class="cake-card-body">
+            <p class="cake-price"><span class="cake-price-label">Price:</span>Rs. 3,500</p>
+            <button type="button" class="add-cart-btn" data-add-to-cart data-id="mousse-cake" data-name="Mousse Cake" data-price="3500">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="9" cy="20" r="1.5"/>
+                <circle cx="18" cy="20" r="1.5"/>
+                <path d="M2 3h3l2.6 12.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6"/>
+              </svg>
+              <span>Add to Cart</span>
+            </button>
+          </div>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>&copy; 2026 Crumb &amp; Co. | All Rights Reserved</span>
+      <span class="footer-tagline">Small-batch patisserie &amp; artisan bakery</span>
+    </div>
+  </footer>
+
+  <!-- Pop-up Toast (State 2 — Item Added) -->
+  <div id="cart-toast" class="toast" role="status" aria-live="polite">
+    <p class="toast-title">&#10003; Added to Cart</p>
+    <p id="toast-message" class="toast-message">Strawberry Cake was added to the cart.</p>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
