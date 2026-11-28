@@ -1,0 +1,122 @@
+In this project ("Crumb & Co", HTML5, CSS3, vanilla JS only), build `pages/contact.html` and `js/contact.js` matching my Contact horizontal prototype:
+- Left side: "Contact Us" details (phone, email, bakery location, and bakery branding/logo area).
+- Right side: "Get in touch" form with Your Name, Email Address, Message, and Send button.
+Implement live and submit-time validation with clear error messages for empty fields, invalid email format, or overly short messages, plus a clear confirmation message when valid (without submitting to an external backend). Ensure responsive layout on desktop and mobile and explain how the validation and state work.
+
+Built the Crumb & Co. Contact page and interactive validation using pure HTML5, CSS3, and vanilla JavaScript:
+
+Files Added & Updated
+
+  
+contact.html: Two-column horizontal layout matching the existing pages/* header, mobile drawer, account pill (auth.js), and footer:
+  
+  
+
+  
+Left side (.contact-info-panel): "Contact Us" details with clickable phone (+92 300 555 0194), email (hello@crumbandco.com), bakery location (24 Roseberry Lane, F-7 Markaz, Islamabad), and the Crumb & Co. Patisserie branding/logo showcase block.
+
+  
+Right side (.contact-form-card): "Get in touch" form (#contact-form) with Your Name (#contact-name), Email Address (#contact-email), Message (#contact-message) with live character counter (#contact-message-counter), Send button (#contact-submit-btn), per-field error messages, and an accessible confirmation banner (#contact-confirmation).
+
+  
+
+  
+contact.js: Live and submit-time validation, state tracking, character counter updates, local confirmation rendering (with event.preventDefault() and no backend call), toast notification (#status-toast), and mobile menu fallback.
+
+  
+crumb-pages.css: Added textarea font/focus-visible support (lines 62-97) and .contact-* layout, valid/invalid input states, confirmation card, and responsive rules.
+
+  
+How Validation & State Work
+
+  
+Centralized formState (contact.js):
+  
+  
+
+  
+values: Stores the current values of name, email, and message.
+
+  
+touched: Tracks whether each field has been interacted with (blur or non-empty input), preventing premature empty-field errors on untouched fields.
+
+  
+hasAttemptedSubmit: Flips to true when Send is clicked so every field—even untouched empty ones—shows validation feedback.
+
+  
+errors: Holds the current error message per field ("" when valid).
+
+  
+lastSubmitted: Stores { name, email, message } after a valid submission to drive the local #contact-confirmation banner.
+
+  
+
+  
+Pure Validator Rules (contact.js):
+  
+  
+
+  
+validateName: Rejects empty strings and names shorter than MIN_NAME_LENGTH (2 trimmed characters).
+
+  
+validateEmail: Rejects empty strings and formats failing EMAIL_PATTERN (/^[^\s@]+@[^\s@]+\.[^\s@]+$/).
+
+  
+validateMessage: Rejects empty strings and messages shorter than MIN_MESSAGE_LENGTH (10 trimmed characters), displaying progress like (4/10).
+
+  
+
+  
+Live Validation (input & blur):
+  
+  
+
+  
+On input, formState.values[fieldKey] updates, updateMessageCounter() refreshes the live character count (0 / 10 min → N characters), any prior confirmation banner is cleared if the user starts composing a new message, and renderFieldState() validates immediately if the field has content, was previously touched, or submit was attempted.
+
+  
+On blur, formState.touched[fieldKey] becomes true and renderFieldState() runs so leaving a required field empty displays its error right away.
+
+  
+renderFieldState() toggles .is-invalid / .is-valid, sets or clears aria-invalid="true", and writes the message to the field's role="alert" error element.
+
+  
+
+  
+Submit-Time Validation & Local Confirmation (contact.js):
+  
+  
+
+  
+submit calls event.preventDefault(), marks all fields touched, validates all three fields, and focuses the first invalid input if any error exists.
+
+  
+When all fields are valid, it saves the summary into formState.lastSubmitted, resets the form (form.reset() and resetValidationState()), reveals #contact-confirmation with a personalized thank-you message and dismiss button, and triggers #status-toast.
+
+  
+
+  
+Responsive Layout (crumb-pages.css):
+  
+  
+
+  
+Desktop renders .contact-layout as a 2-column horizontal grid (0.95fr 1.05fr).
+
+  
+At max-width: 960px, .contact-layout stacks into a single vertical column (1fr).
+
+  
+At max-width: 720px and 640px, the desktop navbar switches to the mobile #menu-toggle drawer and card padding tightens for mobile screens.
+
+  
+
+  
+Verification Performed
+
+  
+Ran a Python HTML/CSS/JS audit on contact.html, contact.js, and crumb-pages.css: verified balanced HTML tags, 23 unique IDs, all 16 getElementById targets present, valid local asset/navigation links, and balanced CSS/JS braces.
+
+  
+Served the workspace over a local HTTP server and loaded pages/contact.html in headless Microsoft Edge (--headless=new --dump-dom): verified exit code 0, initial script execution (0 / 10 min counter and Guest account pill populated), and no uncaught JavaScript errors. Interactive form submission and responsive viewport rendering were not driven end-to-end in a live browser UI.

@@ -61,7 +61,8 @@ a {
 
 button,
 input,
-select {
+select,
+textarea {
   font-family: inherit;
 }
 
@@ -89,7 +90,7 @@ svg {
   top: 14px;
 }
 
-:is(a, button, input, select, summary, [tabindex]):focus-visible {
+:is(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
   outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
 }
@@ -1308,6 +1309,304 @@ main {
 }
 
 /* ==========================================================================
+   Contact Page (pages/contact.html)
+   Horizontal two-column prototype: Contact Us details + Get in touch form
+   ========================================================================== */
+
+.contact-main {
+  padding: 32px 0 56px;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 28px;
+  align-items: stretch;
+  max-width: 1020px;
+  margin: 0 auto;
+}
+
+.contact-info-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 34px 32px;
+  background: linear-gradient(145deg, #fffdf9 0%, #f4e9da 100%);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-brand-showcase {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background-color: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.contact-brand-emblem {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background-color: var(--bg-cream);
+  border: 1px solid var(--border-strong);
+  flex-shrink: 0;
+}
+
+.contact-brand-emblem svg {
+  width: 34px;
+  height: 34px;
+}
+
+.contact-brand-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink-primary);
+}
+
+.contact-brand-tagline {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: var(--ink-secondary);
+}
+
+.contact-details-list {
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  background-color: rgba(255, 255, 255, 0.76);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.contact-detail-item:hover {
+  background-color: #ffffff;
+  border-color: var(--border-strong);
+}
+
+.contact-detail-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background-color: var(--bg-warm);
+  color: var(--accent-espresso);
+  flex-shrink: 0;
+}
+
+.contact-detail-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.contact-detail-label {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-caramel);
+  margin-bottom: 2px;
+}
+
+.contact-detail-value {
+  display: block;
+  font-size: 0.96rem;
+  font-weight: 600;
+  color: var(--ink-primary);
+  word-break: break-word;
+}
+
+a.contact-detail-value:hover {
+  color: var(--accent-berry);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contact-detail-note {
+  margin: 2px 0 0;
+  font-size: 0.83rem;
+  color: var(--ink-muted);
+}
+
+.contact-hours-box {
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background-color: rgba(255, 255, 255, 0.65);
+  border: 1px dashed var(--border-strong);
+  font-size: 0.86rem;
+  color: var(--ink-secondary);
+}
+
+.contact-hours-box strong {
+  color: var(--ink-primary);
+}
+
+.contact-form-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 34px 32px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.contact-form-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-form-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 2.6vw, 2.05rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink-primary);
+}
+
+.contact-form-subtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--ink-secondary);
+}
+
+.contact-confirmation {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  background-color: var(--success-soft);
+  border: 1px solid rgba(36, 106, 70, 0.3);
+  color: var(--ink-primary);
+}
+
+.contact-confirmation[hidden] {
+  display: none;
+}
+
+.contact-confirmation-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--success-green);
+  color: #ffffff;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contact-confirmation-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.contact-confirmation-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-confirmation-title {
+  margin: 0 0 4px;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--success-green);
+}
+
+.contact-confirmation-text {
+  margin: 0;
+  font-size: 0.89rem;
+  color: var(--ink-secondary);
+}
+
+.contact-confirmation-dismiss {
+  border: 0;
+  background: transparent;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--success-green);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.contact-confirmation-dismiss:hover {
+  background-color: rgba(36, 106, 70, 0.12);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-textarea {
+  min-height: 132px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.auth-input.is-valid {
+  border-color: var(--success-green);
+  background-color: #f8fcf9;
+}
+
+.field-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.char-counter {
+  font-size: 0.79rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+  margin-left: auto;
+}
+
+.char-counter.is-met {
+  color: var(--success-green);
+}
+
+.contact-submit-btn {
+  width: 100%;
+  padding: 13px 22px;
+  font-size: 0.98rem;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
    Responsive Breakpoints (Tablet & Mobile Prototype)
    ========================================================================== */
 
@@ -1317,7 +1616,8 @@ main {
   }
 
   .offers-workspace,
-  .auth-layout {
+  .auth-layout,
+  .contact-layout {
     grid-template-columns: 1fr;
   }
 }
@@ -1350,7 +1650,9 @@ main {
   }
 
   .auth-showcase,
-  .auth-card {
+  .auth-card,
+  .contact-info-panel,
+  .contact-form-card {
     padding: 22px 18px;
   }
 
