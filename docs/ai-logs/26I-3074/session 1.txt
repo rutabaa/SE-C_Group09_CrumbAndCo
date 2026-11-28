@@ -1,0 +1,74 @@
+We are building "Crumb & Co" (Home bakery theme) using semantic HTML5, CSS3, and vanilla JavaScript only (no frameworks other than Bootstrap if needed, no jQuery).
+Create a clean shared navigation bar and footer consistent with a bakery brand ("Crumb & Co") with links to Home (../index.html), Menu, Offers (offers.html), Contact (contact.html), and Login (login.html), plus a responsive mobile hamburger menu and accessible focus states.
+Build `pages/offers.html`, `css/crumb-pages.css`, and `js/offers.js`.
+Match my paper prototype for Offers: a "Special Offers" section with cards including "20% OFF" (with "Shop Now" button), "Buy 1 Get 1", and "15% OFF" (with "Shop Now" button), plus a clean mobile layout.
+Make the offers cards rendered dynamically from a JavaScript array in `js/offers.js` (not hardcoded HTML), include a filter/search or discount preview interaction that handles empty/no-match states cleanly, and persist selected/saved offers in `localStorage` across reloads. Add proper `alt` text on images and relative paths throughout. Explain the code clearly after creating the files.
+
+I created pages/offers.html, css/crumb-pages.css, and js/offers.js using semantic HTML5, CSS3, and vanilla JavaScript matching the existing Crumb & Co. bakery palette and typography.
+
+Files Created & Code Explanation
+1. pages/offers.html
+
+  
+Accessibility & Landmarks: Includes a .skip-link to #main-content, semantic <header>, <nav>, <main>, <section>, <article>, <aside>, and <footer> landmarks, plus aria-live="polite" regions for offer results, saved offers, discount preview totals, and status toasts.
+
+  
+Shared Navigation Bar & Footer: Uses relative paths from pages/ to Home (../index.html), Menu (../menu.html), Offers (offers.html with aria-current="page"), Contact (contact.html), and Login (login.html), plus a header Saved Offers counter pill (#header-saved-count) and a mobile hamburger button (#menu-toggle controlling #mobile-nav).
+
+  
+Dynamic Mount Points: Keeps #offers-grid empty in HTML so cards are rendered solely by js/offers.js, alongside search (#offers-search), filter buttons ([data-offer-filter]), an empty-state container (#offers-empty-state), the Discount Preview panel, and the Saved Offers panel.
+
+  
+2. css/crumb-pages.css
+
+  
+Theme & Accessible Focus: Reuses Crumb & Co.'s warm bakery tokens (#faf6f0, #3b2216, #b87a44, #b84e5c, Playfair Display, Plus Jakarta Sans) and adds visible 3px solid :focus-visible outlines across all interactive elements (a, button, input, select, summary, [tabindex]).
+
+  
+Responsive Layout:
+  
+  
+
+  
+Desktop uses a 3-column .offers-grid and a 2-column .offers-workspace for the Discount Preview and Saved Offers panels.
+
+  
+Breakpoints at 960px, 720px, and 640px hide .primary-nav, reveal the .menu-toggle hamburger menu, stack .offers-toolbar and .offers-grid cleanly into 1 column on mobile, and stack footer links cleanly.
+
+  
+
+  
+3. js/offers.js
+
+  
+Dynamic Offers Data (SPECIAL_OFFERS): Stores the three paper-prototype offers (20% OFF on Celebration Fudge & Berry Cakes with a "Shop Now" link to ../cakes.html, Buy 1 Get 1 on Morning Butter Croissants, and 15% OFF on Artisan Sourdough & Loaf Box with a "Shop Now" link to ../breads.html), each with descriptive alt text and relative ../images/... paths.
+
+  
+Filtering, Search & Empty State: getFilteredOffers() and renderOffers() filter by deal type (all, percentage, bogo, saved) and search text (title, badge, category, description, promo code), showing #offers-empty-state with a Reset Filters button (#reset-offers-filters) when no cards match.
+
+  
+Discount Preview & localStorage Persistence:
+  
+  
+
+  
+calculateOfferPreview() computes regular total, estimated savings, and final price for both percentage offers and Buy 1 Get 1 quantities (#preview-qty-input).
+
+  
+crumbAndCoSavedOffers persists the array of saved offer IDs across page reloads, and crumbAndCoSelectedOffer persists the selected preview offer across reloads.
+
+  
+initMobileMenu() toggles #mobile-nav, updates aria-expanded, and supports closing via Escape.
+
+  
+
+  
+Verification Notes
+
+  
+Verified via PowerShell Test-Path that pages/offers.html, css/crumb-pages.css, js/offers.js, index.html, menu.html, cakes.html, breads.html, and all referenced images (images/chocolate-fudge-cake.jpg, images/croissants.jpg, images/artisan-bread.jpg) exist on disk.
+
+  
+Node.js was not installed in this environment, so node --check js/offers.js and live browser/DOM execution were not run; open pages/offers.html in a browser to interactively test filtering, Discount Preview, and localStorage persistence, and note that pages/contact.html and pages/login.html will need to be created as sibling pages to complete those nav targets.
+
+  
