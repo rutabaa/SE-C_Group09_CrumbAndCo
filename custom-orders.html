@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crumb &amp; Co. — Custom Orders</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .custom-layout {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .order-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .order-card-title {
+      margin: 0 0 6px;
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .order-card-note {
+      margin: 0 0 22px;
+      font-size: 0.94rem;
+      color: var(--ink-muted);
+    }
+
+    .form-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .form-group {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .form-required {
+      color: var(--accent-berry);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--ink-primary);
+      background-color: var(--bg-page);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      outline: none;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+    }
+
+    .form-control:focus {
+      background-color: var(--bg-surface);
+      border-color: var(--accent-caramel);
+      box-shadow: 0 0 0 4px rgba(184, 122, 68, 0.16);
+    }
+
+    .form-control.is-invalid {
+      border-color: var(--accent-berry);
+      background-color: #fff8f8;
+    }
+
+    textarea.form-control {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .field-error {
+      min-height: 16px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent-berry);
+    }
+
+    .form-actions {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* Order Review Section */
+    .order-review-card[hidden],
+    #order-form-view[hidden] {
+      display: none;
+    }
+
+    .review-layout {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .review-media {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background-color: var(--bg-cream);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .review-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .review-details {
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .review-detail-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .review-detail-row:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .review-detail-label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+    }
+
+    .review-detail-value {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      text-align: right;
+    }
+
+    .review-divider {
+      border: 0;
+      border-top: 2px dotted var(--border-strong);
+      margin: 24px 0 18px;
+    }
+
+    .review-price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .review-price-label {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .review-price-value {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--accent-caramel);
+    }
+
+    .review-actions {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .order-confirm {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 40px 24px;
+      background: linear-gradient(160deg, #fffdf9 0%, var(--bg-cream) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+    }
+
+    .order-confirm[hidden] {
+      display: none;
+    }
+
+    .order-confirm-icon {
+      width: 82px;
+      height: 82px;
+      margin-bottom: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(36, 106, 70, 0.12);
+      border: 2px solid rgba(36, 106, 70, 0.28);
+      color: var(--success-green);
+    }
+
+    .order-confirm-icon svg {
+      width: 42px;
+      height: 42px;
+    }
+
+    .order-confirm-title {
+      margin: 0 0 10px;
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--ink-primary);
+    }
+
+    .order-confirm-text {
+      margin: 0 0 26px;
+      font-size: 1rem;
+      color: var(--ink-secondary);
+    }
+
+    .info-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .info-card-media {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background-color: var(--bg-cream);
+    }
+
+    .info-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .info-card-body {
+      padding: 22px;
+    }
+
+    .info-card-title {
+      margin: 0 0 10px;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .info-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 0.92rem;
+      color: var(--ink-secondary);
+      display: grid;
+      gap: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .custom-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .order-card {
+        padding: 20px 18px;
+      }
+
+      .review-layout {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .form-actions .btn,
+      .review-actions .btn,
+      .order-confirm .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <svg class="brand-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <path d="M9 21h22l-3 13H12L9 21z" fill="#e9c89b" stroke="#3b2416" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M7 20c0-4 3-7 6-7 1-4 4-7 7-7s6 3 7 7c3 0 6 3 6 7 0 2-2 3-4 3H11c-2 0-4-1-4-3z" fill="#f7d6d9" stroke="#3b2416" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="20" cy="6" r="2.5" fill="#d87b86" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="15" y1="21" x2="16" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="20" y1="21" x2="20" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+          <line x1="25" y1="21" x2="24" y2="34" stroke="#3b2416" stroke-width="1.5"/>
+        </svg>
+        <span>Crumb &amp; Co.</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="menu.html#menu-search" id="header-search-btn" class="icon-btn header-search-btn" aria-label="Search Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/>
+            <line x1="16.5" y1="16.5" x2="21" y2="21"/>
+          </svg>
+        </a>
+
+        <button type="button" id="menu-toggle" class="icon-btn menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-nav">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <line x1="4" y1="7" x2="20" y2="7"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <line x1="4" y1="17" x2="20" y2="17"/>
+          </svg>
+        </button>
+
+        <a href="cart.html" class="icon-btn" aria-label="Shopping Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="20" r="1.5"/>
+            <circle cx="18" cy="20" r="1.5"/>
+            <path d="M2 3h3l2.6 12.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6"/>
+          </svg>
+          <span id="cart-badge" class="cart-badge is-empty">0</span>
+        </a>
+      </div>
+    </div>
+
+    <div id="mobile-nav" class="mobile-nav">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="page-header-row">
+        <a href="index.html" class="back-link" aria-label="Back to Home">&larr;</a>
+        <div>
+          <h1 class="page-title">Custom Orders</h1>
+          <p class="page-subtitle">Plan a bespoke cake, pastry box, or artisan bread platter for your celebration</p>
+        </div>
+      </div>
+
+      <div class="custom-layout">
+        <section class="order-card" aria-labelledby="custom-form-heading">
+          <div id="order-form-view">
+            <h2 id="custom-form-heading" class="order-card-title">Custom Order Details</h2>
+            <p class="order-card-note">Fill in your preferences below to review your custom order. Fields marked with <span class="form-required">*</span> are required.</p>
+
+            <form id="custom-order-form" novalidate>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="customer-name" class="form-label">Your Name <span class="form-required">*</span></label>
+                  <input type="text" id="customer-name" name="customerName" class="form-control" placeholder="e.g., Ayesha Khan" required>
+                  <span id="error-customer-name" class="field-error" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone-number" class="form-label">Phone Number <span class="form-required">*</span></label>
+                  <input type="tel" id="phone-number" name="phoneNumber" class="form-control" placeholder="e.g., 0300-1234567" required>
+                  <span id="error-phone-number" class="field-error" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="order-type" class="form-label">Order Type <span class="form-required">*</span></label>
+                  <select id="order-type" name="orderType" class="form-control" required>
+                    <option value="">Select an order type</option>
+                    <option value="Custom Celebration Cake">Custom Celebration Cake</option>
+                    <option value="Event Pastry Box">Event Pastry Box</option>
+                    <option value="Artisan Bread Platter">Artisan Bread Platter</option>
+                    <option value="Cupcake &amp; Treat Assortment">Cupcake &amp; Treat Assortment</option>
+                  </select>
+                  <span id="error-order-type" class="field-error" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="flavor" class="form-label">Flavor <span class="form-required">*</span></label>
+                  <select id="flavor" name="flavor" class="form-control" required>
+                    <option value="">Select a flavor</option>
+                    <option value="Chocolate Fudge">Chocolate Fudge</option>
+                    <option value="Strawberry Cream">Strawberry Cream</option>
+                    <option value="Red Velvet">Red Velvet</option>
+                    <option value="Classic Vanilla">Classic Vanilla</option>
+                    <option value="Almond &amp; Butter">Almond &amp; Butter</option>
+                  </select>
+                  <span id="error-flavor" class="field-error" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="size" class="form-label">Size <span class="form-required">*</span></label>
+                  <select id="size" name="size" class="form-control" required>
+                    <option value="">Select a size</option>
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Large">Large</option>
+                  </select>
+                  <span id="error-size" class="field-error" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="quantity" class="form-label">Quantity <span class="form-required">*</span></label>
+                  <input type="number" id="quantity" name="quantity" class="form-control" min="1" max="50" value="1" required>
+                  <span id="error-quantity" class="field-error" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="delivery-date" class="form-label">Delivery Date <span class="form-required">*</span></label>
+                  <input type="date" id="delivery-date" name="deliveryDate" class="form-control" required>
+                  <span id="error-delivery-date" class="field-error" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="order-message" class="form-label">Message <span class="form-required">*</span></label>
+                  <textarea id="order-message" name="message" class="form-control" placeholder="Share cake inscription, design theme, or dietary notes..." required></textarea>
+                  <span id="error-order-message" class="field-error" aria-live="polite"></span>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Place Custom Order</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Order Review Screen -->
+          <div id="order-review-view" class="order-review-card" aria-labelledby="order-review-heading" hidden>
+            <h2 id="order-review-heading" class="order-card-title">Order Review</h2>
+            <p class="order-card-note">Please review your selected bake details and estimated total before confirming.</p>
+
+            <div class="review-layout">
+              <div class="review-media">
+                <img id="review-image" src="images/red-velvet-cake.jpg" alt="Selected custom order product">
+              </div>
+
+              <dl class="review-details">
+                <div class="review-detail-row">
+                  <dt class="review-detail-label">Cake / Order Type</dt>
+                  <dd id="review-order-type" class="review-detail-value"></dd>
+                </div>
+                <div class="review-detail-row">
+                  <dt class="review-detail-label">Flavor</dt>
+                  <dd id="review-flavor" class="review-detail-value"></dd>
+                </div>
+                <div class="review-detail-row">
+                  <dt class="review-detail-label">Size</dt>
+                  <dd id="review-size" class="review-detail-value"></dd>
+                </div>
+                <div class="review-detail-row">
+                  <dt class="review-detail-label">Quantity</dt>
+                  <dd id="review-quantity" class="review-detail-value"></dd>
+                </div>
+                <div class="review-detail-row">
+                  <dt class="review-detail-label">Delivery Date</dt>
+                  <dd id="review-delivery-date" class="review-detail-value"></dd>
+                </div>
+              </dl>
+            </div>
+
+            <hr class="review-divider" aria-hidden="true">
+
+            <div class="review-price-row">
+              <span class="review-price-label">Estimated Price</span>
+              <span id="review-estimated-price" class="review-price-value">Rs. 0</span>
+            </div>
+
+            <div class="review-actions">
+              <button type="button" id="edit-order-btn" class="btn btn-secondary">Edit Order</button>
+              <button type="button" id="confirm-order-btn" class="btn btn-primary">Confirm Order</button>
+            </div>
+          </div>
+
+          <!-- Order Confirmation Screen -->
+          <div id="order-confirmation" class="order-confirm" role="status" aria-live="polite" hidden>
+            <div class="order-confirm-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <h2 class="order-confirm-title">Your Order Has Been Confirmed!</h2>
+            <p class="order-confirm-text">Thank you for choosing Crumb &amp; Co. Bakery.</p>
+            <a href="index.html" class="btn btn-primary">Back to Home</a>
+          </div>
+        </section>
+
+        <aside class="info-card" aria-label="Custom ordering guidelines">
+          <div class="info-card-media">
+            <img src="images/red-velvet-cake.jpg" alt="Handcrafted Crumb and Co. celebration cake">
+          </div>
+          <div class="info-card-body">
+            <h2 class="info-card-title">Before You Order</h2>
+            <ul class="info-list">
+              <li><strong>Size Guide:</strong> Small serves 6&ndash;8, Medium serves 12&ndash;16, and Large serves 20&ndash;25 guests.</li>
+              <li><strong>Lead Time:</strong> Please select a delivery date at least 2 days in advance for custom bakes.</li>
+              <li><strong>Fresh Ingredients:</strong> All orders are baked in small batches with real butter and seasonal toppings.</li>
+              <li><strong>Local Preview:</strong> Submitting this form validates and displays your order summary right here in your browser without sending data to a server.</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>&copy; 2026 Crumb &amp; Co. | All Rights Reserved</span>
+      <span class="footer-tagline">Small-batch patisserie &amp; artisan bakery</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      const orderCard = document.querySelector(".order-card");
+      const formView = document.getElementById("order-form-view");
+      const reviewView = document.getElementById("order-review-view");
+      const confirmationBox = document.getElementById("order-confirmation");
+
+      const form = document.getElementById("custom-order-form");
+      const nameInput = document.getElementById("customer-name");
+      const phoneInput = document.getElementById("phone-number");
+      const typeInput = document.getElementById("order-type");
+      const flavorInput = document.getElementById("flavor");
+      const sizeInput = document.getElementById("size");
+      const quantityInput = document.getElementById("quantity");
+      const dateInput = document.getElementById("delivery-date");
+      const messageInput = document.getElementById("order-message");
+
+      const reviewImage = document.getElementById("review-image");
+      const reviewOrderType = document.getElementById("review-order-type");
+      const reviewFlavor = document.getElementById("review-flavor");
+      const reviewSize = document.getElementById("review-size");
+      const reviewQuantity = document.getElementById("review-quantity");
+      const reviewDeliveryDate = document.getElementById("review-delivery-date");
+      const reviewEstimatedPrice = document.getElementById("review-estimated-price");
+      const editOrderBtn = document.getElementById("edit-order-btn");
+      const confirmOrderBtn = document.getElementById("confirm-order-btn");
+
+      const ORDER_TYPE_BASE_PRICES = {
+        "Custom Celebration Cake": 3200,
+        "Event Pastry Box": 2200,
+        "Artisan Bread Platter": 1800,
+        "Cupcake & Treat Assortment": 2400
+      };
+
+      const SIZE_MULTIPLIERS = {
+        "Small": 1,
+        "Medium": 1.35,
+        "Large": 1.75
+      };
+
+      const FLAVOR_ADDONS = {
+        "Chocolate Fudge": 300,
+        "Strawberry Cream": 150,
+        "Red Velvet": 250,
+        "Classic Vanilla": 0,
+        "Almond & Butter": 200
+      };
+
+      const ORDER_IMAGE_MAP = {
+        "Custom Celebration Cake": {
+          "Chocolate Fudge": "images/chocolate-fudge-cake.jpg",
+          "Strawberry Cream": "images/berry-cake.jpg",
+          "Red Velvet": "images/red-velvet-cake.jpg",
+          "Classic Vanilla": "images/vanilla-cake.jpg",
+          "Almond & Butter": "images/cheese-cake.jpg",
+          default: "images/red-velvet-cake.jpg"
+        },
+        "Event Pastry Box": {
+          default: "images/pastry-puff.jpg"
+        },
+        "Artisan Bread Platter": {
+          default: "images/artisan-bread.jpg"
+        },
+        "Cupcake & Treat Assortment": {
+          "Chocolate Fudge": "images/mousse-cake.jpg",
+          "Red Velvet": "images/red-velvet-cake.jpg",
+          "Classic Vanilla": "images/vanilla-cake.jpg",
+          default: "images/berry-cake.jpg"
+        }
+      };
+
+      let currentOrder = null;
+
+      // Prevent picking a past delivery date
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, "0");
+      const dd = String(today.getDate()).padStart(2, "0");
+      const todayString = `${yyyy}-${mm}-${dd}`;
+      dateInput.setAttribute("min", todayString);
+
+      function setFieldError(input, errorId, message) {
+        const errorEl = document.getElementById(errorId);
+        if (message) {
+          input.classList.add("is-invalid");
+          if (errorEl) errorEl.textContent = message;
+          return false;
+        }
+        input.classList.remove("is-invalid");
+        if (errorEl) errorEl.textContent = "";
+        return true;
+      }
+
+      function clearAllErrors() {
+        const inputs = [nameInput, phoneInput, typeInput, flavorInput, sizeInput, quantityInput, dateInput, messageInput];
+        const errorIds = [
+          "error-customer-name",
+          "error-phone-number",
+          "error-order-type",
+          "error-flavor",
+          "error-size",
+          "error-quantity",
+          "error-delivery-date",
+          "error-order-message"
+        ];
+        inputs.forEach((input, idx) => setFieldError(input, errorIds[idx], ""));
+      }
+
+      function validateForm() {
+        let isValid = true;
+
+        const nameVal = nameInput.value.trim();
+        if (!setFieldError(nameInput, "error-customer-name", nameVal.length < 2 ? "Please enter your name." : "")) {
+          isValid = false;
+        }
+
+        const phoneVal = phoneInput.value.trim();
+        const phoneDigits = phoneVal.replace(/\D/g, "");
+        if (!setFieldError(
+          phoneInput,
+          "error-phone-number",
+          phoneDigits.length < 7 ? "Please enter a valid phone number (at least 7 digits)." : ""
+        )) {
+          isValid = false;
+        }
+
+        if (!setFieldError(typeInput, "error-order-type", typeInput.value === "" ? "Please select an order type." : "")) {
+          isValid = false;
+        }
+
+        if (!setFieldError(flavorInput, "error-flavor", flavorInput.value === "" ? "Please choose a flavor." : "")) {
+          isValid = false;
+        }
+
+        if (!setFieldError(sizeInput, "error-size", sizeInput.value === "" ? "Please choose a size." : "")) {
+          isValid = false;
+        }
+
+        const qtyVal = Number(quantityInput.value);
+        const qtyInvalid = !Number.isInteger(qtyVal) || qtyVal < 1 || qtyVal > 50;
+        if (!setFieldError(quantityInput, "error-quantity", qtyInvalid ? "Enter a quantity from 1 to 50." : "")) {
+          isValid = false;
+        }
+
+        const dateVal = dateInput.value;
+        let dateError = "";
+        if (!dateVal) {
+          dateError = "Please select a delivery date.";
+        } else if (dateVal < todayString) {
+          dateError = "Delivery date cannot be in the past.";
+        }
+        if (!setFieldError(dateInput, "error-delivery-date", dateError)) {
+          isValid = false;
+        }
+
+        const msgVal = messageInput.value.trim();
+        if (!setFieldError(messageInput, "error-order-message", msgVal.length < 5 ? "Please include a short message or order notes." : "")) {
+          isValid = false;
+        }
+
+        return isValid;
+      }
+
+      function getProductImage(orderType, flavor) {
+        const typeEntry = ORDER_IMAGE_MAP[orderType];
+        if (!typeEntry) {
+          return "images/hero-bakery.jpg";
+        }
+        return typeEntry[flavor] || typeEntry.default || "images/hero-bakery.jpg";
+      }
+
+      function calculateEstimatedPrice(orderType, flavor, size, quantity) {
+        const base = ORDER_TYPE_BASE_PRICES[orderType] || 2500;
+        const multiplier = SIZE_MULTIPLIERS[size] || 1;
+        const flavorAddon = FLAVOR_ADDONS[flavor] || 0;
+        const unitPrice = Math.round((base * multiplier + flavorAddon) / 50) * 50;
+        return unitPrice * quantity;
+      }
+
+      function formatPrice(amount) {
+        return `Rs. ${amount.toLocaleString("en-US")}`;
+      }
+
+      function formatDeliveryDate(dateStr) {
+        const parts = dateStr.split("-");
+        if (parts.length !== 3) return dateStr;
+        const year = Number(parts[0]);
+        const month = Number(parts[1]) - 1;
+        const day = Number(parts[2]);
+        const dateObj = new Date(year, month, day);
+        return dateObj.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric"
+        });
+      }
+
+      function showView(viewName) {
+        formView.hidden = viewName !== "form";
+        reviewView.hidden = viewName !== "review";
+        confirmationBox.hidden = viewName !== "confirm";
+        if (orderCard) {
+          orderCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        if (!validateForm()) {
+          return;
+        }
+
+        const quantity = Number(quantityInput.value);
+        const orderType = typeInput.value;
+        const flavor = flavorInput.value;
+        const size = sizeInput.value;
+        const deliveryDate = dateInput.value;
+        const estimatedTotal = calculateEstimatedPrice(orderType, flavor, size, quantity);
+
+        currentOrder = {
+          customerName: nameInput.value.trim(),
+          phoneNumber: phoneInput.value.trim(),
+          orderType,
+          flavor,
+          size,
+          quantity,
+          deliveryDate,
+          formattedDate: formatDeliveryDate(deliveryDate),
+          message: messageInput.value.trim(),
+          estimatedPriceText: formatPrice(estimatedTotal),
+          imageSrc: getProductImage(orderType, flavor)
+        };
+
+        reviewImage.src = currentOrder.imageSrc;
+        reviewImage.alt = `${currentOrder.orderType} - ${currentOrder.flavor}`;
+        reviewOrderType.textContent = currentOrder.orderType;
+        reviewFlavor.textContent = currentOrder.flavor;
+        reviewSize.textContent = currentOrder.size;
+        reviewQuantity.textContent = String(currentOrder.quantity);
+        reviewDeliveryDate.textContent = currentOrder.formattedDate;
+        reviewEstimatedPrice.textContent = currentOrder.estimatedPriceText;
+
+        showView("review");
+      });
+
+      editOrderBtn.addEventListener("click", function () {
+        showView("form");
+        nameInput.focus();
+      });
+
+      confirmOrderBtn.addEventListener("click", function () {
+        if (!currentOrder) return;
+
+        showView("confirm");
+      });
+    })();
+  </script>
+</body>
+</html>
