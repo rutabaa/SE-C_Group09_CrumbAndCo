@@ -1,0 +1,101 @@
+In this project ("Crumb & Co", HTML5, CSS3, vanilla JS only), build `pages/login.html` and `js/auth.js` matching my Login horizontal prototype and my 4-state vertical prototype:
+1. Login Page ("Welcome Back!", Email, Password, "Login" button, plus link/option to switch to Register)
+2. Login Successful state ("Welcome Back! You logged in successfully" and a "Go to account" button/view)
+3. Incorrect Password / invalid input state ("Incorrect Password! Please try again" and a "Try Again" button, plus clear handling for empty/invalid email or password)
+4. Register Page ("Create an Account" with Name, Email, Password, "Register" button, and option to go back to Login)
+Store registered/logged-in user state in `localStorage` so it persists across page reloads and updates navbar/account status cleanly. Keep code well-structured, readable, and easy to explain line by line.
+
+Built pages/login.html, js/auth.js, and matching CSS3 rules in css/crumb-pages.css, plus connected js/auth.js in pages/offers.html for cross-page navbar persistence.
+
+What Was Built
+
+  
+
+  
+
+Horizontal & 4-State Vertical Auth Layout (pages/login.html, css/crumb-pages.css):
+
+
+  
+
+  
+Desktop (horizontal): Two-column .auth-layout grid pairing a warm bakery showcase panel (.auth-showcase) with the interactive auth card (.auth-card).
+
+  
+Mobile / narrower viewports (vertical): Collapses into a single-column vertical stack at <= 960px while switching between the vertical state panels inside .auth-card.
+
+  
+All 4 states + Account view:
+  
+  
+
+  
+#state-login — "Welcome Back!", Email, Password (with show/hide toggle), "Login" button, and "Register" switch button.
+
+  
+#state-success — "Welcome Back! You logged in successfully" and "Go to account" button.
+
+  
+#state-error — "Incorrect Password! Please try again", "Try Again" button (returns to login, clears password, and focuses it), and "Create an Account" option.
+
+  
+#state-register — "Create an Account" with Name, Email, Password, "Register" button, and "Back to Login" button.
+
+  
+#state-account — Displays signed-in member name, email, saved offers count (from crumbAndCoSavedOffers), quick links, and "Log Out".
+
+  
+
+  
+
+  
+
+  
+
+  
+
+Vanilla JS Auth & localStorage Persistence (js/auth.js):
+
+
+  
+
+  
+Storage helpers (readUsers, writeUsers, readActiveUser, writeActiveUser): Uses crumbAndCoUsers for registered accounts (seeded on first visit with baker@crumbandco.com / crumb123 so login and error states work immediately) and crumbAndCoActiveUser for the active session.
+
+  
+Validation (isValidEmail, setFieldError, clearFormErrors): Shows inline errors for empty/invalid email, empty password, short name (< 2 chars), short password (< 6 chars), and duplicate registration emails.
+
+  
+Navbar & reload persistence (updateNavbarAuthStatus, initAuthPage): Updates [data-auth-nav] / login.html links in desktop, mobile, and footer navs from Login to Account (<FirstName>) and updates #header-account-pill (Guest vs Hi, <FirstName>). On page reload while signed in, #state-account is restored automatically.
+
+  
+
+  
+
+  
+Verification
+
+  
+Parsed pages/login.html and pages/offers.html with Python html.parser and checked balanced braces in css/crumb-pages.css (184 pairs).
+
+  
+Loaded both pages/login.html and pages/offers.html in headless Chrome (--dump-dom --virtual-time-budget=1500) and verified that js/auth.js initialized #state-login as visible with the other 4 state sections hidden, updated #header-account-label to Guest, and updated login.html nav links on pages/offers.html without breaking offers.js rendering (Showing 3 of 3 offers).
+
+  
+In pages/login.html and css/crumb-pages.css, align the right-hand auth card content to the top using justify-content: flex-start instead of vertical centering, with standard top padding matching the left card, so "Welcome Back!" sits cleanly near the top of the card aligned with "CRUMB & CO. BAKERY CLUB" and the form fields fit comfortably without needing to scroll, while keeping all existing JS logic and states unchanged.
+
+Updated pages/login.html and css/crumb-pages.css to top-align the right-hand auth card and keep the form comfortably within the viewport without modifying js/auth.js.
+
+Changes
+
+  
+Top alignment & matching padding (css/crumb-pages.css): Changed .auth-card from justify-content: center; padding: 34px 32px; to justify-content: flex-start; padding: 32px;, matching .auth-showcase's 32px padding so "Welcome Back!" aligns with "CRUMB & CO. BAKERY CLUB".
+
+  
+Compact vertical fit (pages/login.html, css/crumb-pages.css): Added .auth-main (padding: 24px 0 40px), removed the top margin on .auth-layout, and tightened .auth-showcase gap (16px), .auth-showcase-media (max-height: 190px), and .auth-perks-list spacing so both cards and form inputs fit comfortably without scrolling.
+
+  
+Verification
+
+  
+Verified HTML parsing on pages/login.html and pages/offers.html, balanced braces in css/crumb-pages.css (185 pairs), and headless Chrome DOM rendering confirming <main id="main-content" class="auth-main"> and all five state sections (#state-login visible, #state-success, #state-error, #state-register, #state-account hidden).
